@@ -1,9 +1,41 @@
+<style>
+header {
+    line-height: 1em;
+    padding: 2%;
+    text-align: center;
+    font-family: Helvetica, sans-serif
+}
+nav ul {
+    list-style-type: circle;
+    margin: auto;
+    width: 50%;
+    background: rgba(240, 240, 240, 0.9);
+    font-size: 150%;
+    line-height: 2em;
+    padding: 2%;
+}
+</style>
+
+{% load static %}
+
+<link rel="stylesheet" type="text/css" href="{% static 'polls/style.css' %}">
+
 {% if latest_question_list %}
-    <ul>
-    {% for question in latest_question_list %}
-        <li><a href="{% url 'polls:detail' question.id %}">{{ question.question_text }}</a></li>
-    {% endfor %}
-    </ul>
+
+    <header>
+        <h1 style = "color: rgb(0, 102, 100); font-size: 500%;">KU Polls</h1>
+        <p h1 style = "color: rgb(116, 120, 120); font-size: 130%;">Welcome to the KU Polls, plese click on each topic to vote.</p>
+    </header>
+    <nav>
+        <ul>
+        {% for question in latest_question_list %}
+            <li><a href="{% url 'polls:detail' question.id %}">{{ question.question_text }}</a></li>
+        {% endfor %}
+        </ul>
+    </nav>
 {% else %}
-    <p>No polls are available.</p>
+    <header>
+        <h1 style = "color: rgb(0, 102, 100); font-size: 500%;">KU Polls</h1>
+        <h2 style = "color: rgb(116, 120, 120); font-size: 200%; line-height: 200px">No polls are available.</h2>
+    </header>
 {% endif %}

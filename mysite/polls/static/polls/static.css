@@ -1,0 +1,11 @@
+li a {
+    color: black;
+    font-family: Helvetica, sans-serif;
+    text-decoration: none;
+}
+
+body {
+    background: whitesmoke url("images/background.gif");
+    background-repeat: no-repeat;
+    background-size: cover;
+}

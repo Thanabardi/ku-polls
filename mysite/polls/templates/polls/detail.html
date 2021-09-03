@@ -1,12 +1,46 @@
-<h1>{{ question.question_text }}</h1>
+<style>
+header {
+    background: rgb(0, 102, 100);
+    line-height: 10px;
+    padding: 1%;
+    text-align: left;
+    font-family: Helvetica, sans-serif
+}
+body {
+    background-color: whitesmoke;
+}
+article {
+    list-style-type: circle;
+    width: 90%;
+    margin: 4%;
+    background: rgb(230, 230, 230);
+    border-radius: 15px;
+    font-size: 150%;
+    padding: 1%;
+    font-family: Helvetica, sans-serif
+}
+</style>
 
-{% if error_message %}<p><strong>{{ error_message }}</strong></p>{% endif %}
+<header>
+    <h1 style = "color: rgb(178, 187, 30); font-size: 300%;">KU Polls</h1>
+    <p><a href="/polls/" style = "color: white; font-size: 130%; text-decoration: none">Home</a></p>
+</header>
+<h2 style="font-family: Helvetica, sans-serif; font-size: 200%; margin: 1em;">{{ question.question_text }}</h2>
 
-<form action="{% url 'polls:vote' question.id %}" method="post">
+<form action="{% url 'polls:vote' question.id %}" method="post" ">
+    
 {% csrf_token %}
 {% for choice in question.choice_set.all %}
-    <input type="radio" name="choice" id="choice{{ forloop.counter }}" value="{{ choice.id }}">
-    <label for="choice{{ forloop.counter }}">{{ choice.choice_text }}</label><br>
+    <article>
+        <input type="radio" name="choice" id="choice{{ forloop.counter }}" value="{{ choice.id }}">
+        <label for="choice{{ forloop.counter }}">{{ choice.choice_text }}</label><br>
+    </article>
 {% endfor %}
-<input type="submit" value="Vote">
+
+<input type="submit" value="Vote" style = "font-family: Helvetica, sans-serif;
+    font-size: 120%; margin: 2%; padding: 10px; width: 5%; border: none; background: rgb(178, 187, 30);">
+
+{% if error_message %}
+    <p style="font-family: Helvetica, sans-serif; color: red; font-size: 120%; margin: 2%"><strong>{{ error_message }}</strong></p>{% endif %}
+
 </form>
