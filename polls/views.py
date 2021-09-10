@@ -2,7 +2,6 @@ from django.http import HttpResponseRedirect
 from django.shortcuts import get_object_or_404, render
 from django.urls import reverse
 from django.views import generic
-from django.utils import timezone
 
 from .models import Choice, Question
 
@@ -16,10 +15,11 @@ class IndexView(generic.ListView):
         Return the last five published questions (not including those set to be
         published in the future, and the polls that already meet the deadline).
         """
-        return Question.objects.filter(
-            pub_date__lte=timezone.now(),
-            end_date__gt=timezone.now()
-        ).order_by('-pub_date')[:5]
+        can_vote_id = []
+        for question in Question.objects.all():
+            if question.can_vote():
+                can_vote_id.append(question.id)
+        return Question.objects.filter(id__in=can_vote_id).order_by('-pub_date')[:]
 
 
 class DetailView(generic.DetailView):
@@ -30,9 +30,11 @@ class DetailView(generic.DetailView):
         """
         Excludes any questions that aren't published and pass the deadline.
         """
-        return Question.objects.filter(
-            pub_date__lte=timezone.now(),
-            end_date__gt=timezone.now())
+        can_vote_id = []
+        for question in Question.objects.all():
+            if question.can_vote():
+                can_vote_id.append(question.id)
+        return Question.objects.filter(id__in=can_vote_id).order_by('-pub_date')[:]
 
 
 class ResultsView(generic.DetailView):
@@ -41,7 +43,7 @@ class ResultsView(generic.DetailView):
 
 
 def index(request):
-    latest_question_list = Question.objects.order_by('-pub_date')[:5]
+    latest_question_list = Question.objects.order_by('-pub_date')[:]
     context = {'latest_question_list': latest_question_list}
     return render(request, 'polls/index.html', context)
 
