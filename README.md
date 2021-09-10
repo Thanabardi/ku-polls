@@ -7,4 +7,5 @@ The **KU-Polls** is an online polling tool that has a simple procedure for creat
 [Requirements](../../wiki/Requirements)    
 
 Iterations    
-[Iteration 1 Plan](../../wiki/Iteration-1-Plan)   
+- [Iteration 1 Plan](../../wiki/Iteration-1-Plan)   
+- [Iteration 2 Plan](../../wiki/Iteration-2-Plan)   
