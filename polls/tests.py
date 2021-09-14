@@ -25,7 +25,7 @@ class ViewTests(TestCase):
         response = self.client.get(reverse('polls:index'))
         self.assertEqual(response.status_code, 200)
         self.assertContains(response, "No polls are available.")
-        self.assertQuerysetEqual(response.context['latest_question_list'], [])
+        self.assertQuerysetEqual(response.context['question_list'], [])
 
     def test_past_question(self):
         """
@@ -36,7 +36,7 @@ class ViewTests(TestCase):
         question.save()
         response = self.client.get(reverse('polls:index'))
         self.assertQuerysetEqual(
-            response.context['latest_question_list'],
+            response.context['question_list'],
             ['<Question: Past question.>']
         )
 
@@ -49,7 +49,7 @@ class ViewTests(TestCase):
         question.save()
         response = self.client.get(reverse('polls:index'))
         self.assertContains(response, "No polls are available.")
-        self.assertQuerysetEqual(response.context['latest_question_list'], [])
+        self.assertQuerysetEqual(response.context['question_list'], [])
 
     def test_future_question_and_past_question(self):
         """
@@ -62,7 +62,7 @@ class ViewTests(TestCase):
         future_question.save()
         response = self.client.get(reverse('polls:index'))
         self.assertQuerysetEqual(
-            response.context['latest_question_list'],
+            response.context['question_list'],
             ['<Question: Past question.>']
         )
 
@@ -76,7 +76,7 @@ class ViewTests(TestCase):
         past_question_2.save()
         response = self.client.get(reverse('polls:index'))
         self.assertQuerysetEqual(
-            response.context['latest_question_list'],
+            response.context['question_list'],
             ['<Question: Past question 2.>', '<Question: Past question 1.>']
         )
 

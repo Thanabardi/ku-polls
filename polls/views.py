@@ -2,24 +2,23 @@ from django.http import HttpResponseRedirect
 from django.shortcuts import get_object_or_404, render
 from django.urls import reverse
 from django.views import generic
+from django.utils import timezone
 
 from .models import Choice, Question
 
 
 class IndexView(generic.ListView):
     template_name = 'polls/index.html'
-    context_object_name = 'latest_question_list'
+    context_object_name = 'question_list'
 
     def get_queryset(self):
         """
-        Return the last five published questions (not including those set to be
-        published in the future, and the polls that already meet the deadline).
+        Return published questions (not including those set to be
+        published in the future).
         """
-        can_vote_id = []
-        for question in Question.objects.all():
-            if question.can_vote():
-                can_vote_id.append(question.id)
-        return Question.objects.filter(id__in=can_vote_id).order_by('-pub_date')[:]
+        return Question.objects.filter(
+            pub_date__lte=timezone.now()
+        ).order_by('-pub_date')[:]
 
 
 class DetailView(generic.DetailView):
@@ -43,8 +42,8 @@ class ResultsView(generic.DetailView):
 
 
 def index(request):
-    latest_question_list = Question.objects.order_by('-pub_date')[:]
-    context = {'latest_question_list': latest_question_list}
+    question_list = Question.objects.order_by('-pub_date')[:]
+    context = {'question_list': question_list}
     return render(request, 'polls/index.html', context)
 
 def detail(request, question_id):

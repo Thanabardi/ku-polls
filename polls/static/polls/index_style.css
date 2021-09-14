@@ -1,0 +1,33 @@
+body {
+    background: whitesmoke url("images/background.gif");
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+header {
+    font-family: Helvetica, sans-serif;
+    text-align: center;
+    line-height: 1em;
+    padding: 2%;
+}
+table {
+    background: rgba(240, 240, 240, 0.9);
+    font-family: Helvetica, sans-serif;
+    list-style-type: circle;
+    text-align: center;
+    font-size: 150%;
+    line-height: 2em;
+    padding: 2%;
+    margin: auto;
+}
+a:link {
+    color: rgb(0, 102, 100);
+    text-decoration: none;
+}
+a:visited {
+    color: rgb(116, 120, 120);
+    text-decoration: none;
+}
+a:hover {
+    color: rgb(178, 187, 30);
+    text-decoration: none;    
+}

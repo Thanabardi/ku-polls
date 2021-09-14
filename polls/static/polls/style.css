@@ -1,11 +1,50 @@
-li a {
-    color: black;
+body {
+    background-color: whitesmoke;
+}
+header {
+    background: rgb(0, 102, 100);
+    color: rgb(178, 187, 30);
     font-family: Helvetica, sans-serif;
+    text-align: left;
+    font-size: 160%;
+    line-height: 10px;
+    padding: 1%;
+}
+article{
+    font-family: Helvetica, sans-serif;
+    text-align: center;
+    font-size: 130%;
+    padding: 2%;
+}
+table {
+    background: rgb(230, 230, 230);
+    border-radius: 15px;
+    font-family: Helvetica, sans-serif;
+    text-align: center;
+    font-size: 140%;
+    line-height: 200%;
+    padding: 1%;
+    margin: auto;
+}
+ul{
+    background: rgb(230, 230, 230);
+    font-family: Helvetica, sans-serif;
+    list-style-type: circle;
+    width: 90%;
+    margin: 4%;
+    border-radius: 15px;
+    font-size: 150%;
+    padding: 1%;
+}
+a:link {
+    color: rgb(0, 102, 100);
     text-decoration: none;
 }
-
-body {
-    background: whitesmoke url("images/background.gif");
-    background-repeat: no-repeat;
-    background-size: cover;
+a:visited {
+    color: rgb(116, 120, 120);
+    text-decoration: none;
+}
+a:hover {
+    color: rgb(178, 187, 30);
+    text-decoration: none;    
 }

@@ -1,40 +1,31 @@
-<style>
-header {
-    background: rgb(0, 102, 100);
-    line-height: 10px;
-    padding: 1%;
-    text-align: left;
-    font-family: Helvetica, sans-serif
-}
-body {
-    background-color: whitesmoke;
-}
-article {
-    list-style-type: circle;
-    width: 90%;
-    margin: 4%;
-    background: rgb(230, 230, 230);
-    border-radius: 15px;
-    font-size: 150%;
-    padding: 10px;
-    font-family: Helvetica, sans-serif
-}
-</style>
+{% load static %}
+
+<link rel="stylesheet" type="text/css" href="{% static 'polls/style.css' %}">
 
 <header>
-    <h1 style = "color: rgb(178, 187, 30); font-size: 300%;">KU Polls</h1>
-    <p><a href="/polls/" style = "color: white; font-size: 130%; text-decoration: none">Home</a></p>
+    <h1>KU Polls</h1>
+    <a href="/polls/" style = "color: white; font-size: 80%;">Home</a>
 </header>
 
-<h1 style="font-family: Helvetica, sans-serif; font-size: 200%; margin: 1em;">{{ question.question_text }}</h1>
-
 <article>
-    <ul>
-    {% for choice in question.choice_set.all %}
-        <li>{{ choice.choice_text }} <strong>{{ choice.votes }} vote{{ choice.votes|pluralize }}</strong></p></li>
-    {% endfor %}
-    </ul>
+    <strong style="font-size: 140%; margin: 5%;">{{ question.question_text }}</strong>
 </article>
 
-<a href="{% url 'polls:detail' question.id %}"style="font-family: Helvetica, sans-serif; color: rgb(120, 120, 120);
-    font-size: 130%; margin: 2%; text-decoration: none">Vote again</a>
+<table style="width:40%">
+    <tr>
+        <th></th>
+        <th>Votes</th>
+    </tr>
+    {% for choice in question.choice_set.all %}
+        <tr>
+            <td style="text-align: left;">{{ choice.choice_text }}</td>
+            <td>{{ choice.votes }}</td>
+        </tr>    
+    {% endfor %}
+</table>
+
+{% if question.can_vote %}
+    <article>
+        <a href="{% url 'polls:detail' question.id %}">Vote again</a>
+    </article>
+{% endif %}
