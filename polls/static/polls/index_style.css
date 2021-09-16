@@ -19,12 +19,8 @@ table {
     padding: 2%;
     margin: auto;
 }
-a:link {
+a:link, a:visited  {
     color: rgb(0, 102, 100);
-    text-decoration: none;
-}
-a:visited {
-    color: rgb(116, 120, 120);
     text-decoration: none;
 }
 a:hover {

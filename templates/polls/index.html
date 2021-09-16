@@ -10,17 +10,21 @@
 {% if question_list %}
     <table style="width:70%">
         <tr>
-            <th style = "font-size: 120%;">Topic</th>
+            <th style = "font-size: 100%;">Topic</th>
         </tr>
         {% for question in question_list %}
         <tr>
             <td><li style = "text-align: left;">{{ question.question_text }}</li></td>
-            {% if question.can_vote %}
-                <td><a href="{% url 'polls:detail' question.id %}"><p>vote</p></a></td>
+            {% if question.can_vote %}           
+                <td>
+                    <a href="{% url 'polls:detail' question.id %}"><p style="height: 21px;">vote</p></a>
+                    <p style="font-size: 60%; line-height: 1px; color: gray;">Due {{ question.end_date }}</p>
+                </td>
+                <td><a href="{% url 'polls:results' question.id %}"><p>result</p></a></td>
             {% else %}
-                <td></td>
+                <td style="width: 195px;"></td>
+                <td><a href="{% url 'polls:results' question.id %}"><p>result</p></a></td>
             {% endif %}
-            <td><a href="{% url 'polls:results' question.id %}"><p>result</p></a></td>
         </tr>
         {% endfor %}
     </table>

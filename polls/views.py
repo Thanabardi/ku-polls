@@ -27,13 +27,20 @@ class DetailView(generic.DetailView):
 
     def get_queryset(self):
         """
-        Excludes any questions that aren't published and pass the deadline.
+        Excludes any questions that aren't published.
         """
-        can_vote_id = []
-        for question in Question.objects.all():
-            if question.can_vote():
-                can_vote_id.append(question.id)
-        return Question.objects.filter(id__in=can_vote_id).order_by('-pub_date')[:]
+        return Question.objects.filter(
+            pub_date__lte=timezone.now()
+        ).order_by('-pub_date')[:]
+
+        # # also pass the deadline.
+        # can_vote_id = []
+        # for question in Question.objects.all():
+        #     if question.can_vote():
+        #         can_vote_id.append(question.id)
+        # return Question.objects.filter(id__in=can_vote_id).order_by('-pub_date')[:]
+
+        
 
 
 class ResultsView(generic.DetailView):

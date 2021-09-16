@@ -36,15 +36,22 @@ ul{
     font-size: 150%;
     padding: 1%;
 }
-a:link {
+header a:link,header a:visited {
+    color: white;
+    text-decoration: none;
+}
+header a:hover {
+    color: rgb(255, 219, 0);
+    text-decoration: none;    
+}
+a:link, a:visited {
     color: rgb(0, 102, 100);
     text-decoration: none;
 }
-a:visited {
-    color: rgb(116, 120, 120);
-    text-decoration: none;
-}
-a:hover {
+a:hover, label:hover {
     color: rgb(178, 187, 30);
     text-decoration: none;    
+}
+input:hover {
+    color: white;  
 }
