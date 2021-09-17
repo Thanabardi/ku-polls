@@ -7,35 +7,39 @@
     <a href="/polls/" style = "font-size: 80%;">Home</a>
 </header>
 
-{% if question.can_vote %}
+{% if question.is_published %}
+    {% if question.can_vote %}
+        <h2 style="font-family: Helvetica, sans-serif; font-size: 200%; margin: 1em;">{{ question.question_text }}</h2>
 
+        <form action="{% url 'polls:vote' question.id %}" method="post">
+            
+        {% csrf_token %}
+        {% for choice in question.choice_set.all %}
+            <ul>
+                <input type="radio" name="choice" id="choice{{ forloop.counter }}" value="{{ choice.id }}">
+                <label for="choice{{ forloop.counter }}">{{ choice.choice_text }}</label>
+            </ul>
+        {% endfor %}
 
-    <h2 style="font-family: Helvetica, sans-serif; font-size: 200%; margin: 1em;">{{ question.question_text }}</h2>
+        <input type="submit" value="Vote" style = "font-family: Helvetica, sans-serif;
+            font-size: 120%; margin: 2%; padding: 10px; width: 5%; border: none; background-color: rgb(178, 187, 30)">
 
-    <form action="{% url 'polls:vote' question.id %}" method="post">
-        
-    {% csrf_token %}
-    {% for choice in question.choice_set.all %}
-        <ul>
-            <input type="radio" name="choice" id="choice{{ forloop.counter }}" value="{{ choice.id }}">
-            <label for="choice{{ forloop.counter }}">{{ choice.choice_text }}</label>
-        </ul>
-    {% endfor %}
+        {% if error_message %}
+            <p style="font-family: Helvetica, sans-serif; color: red; font-size: 120%; margin: 2%"><strong>{{ error_message }}</strong></p>
+        {% endif %}
 
-    <input type="submit" value="Vote" style = "font-family: Helvetica, sans-serif;
-        font-size: 120%; margin: 2%; padding: 10px; width: 5%; border: none; background-color: rgb(178, 187, 30)">
-
-    {% if error_message %}
-        <p style="font-family: Helvetica, sans-serif; color: red; font-size: 120%; margin: 2%"><strong>{{ error_message }}</strong></p>
+        </form>
+    {% else %}
+        <article>
+            <h1 style="font-size: 300%;">Hmm...</h1> 
+            <p style="color: gray;">It seems like the poll "{{ question.question_text }}" has already expired.</p>
+            <p style="color: gray;">Since, {{ question.end_date }}</p>
+            <a href="{% url 'polls:results' question.id %}"><p>Want to see the result?</p></a>
+        </article>
     {% endif %}
-
-    </form>
-
 {% else %}
-    <article>
-        <h1 style="font-size: 300%;">Hmm...</h1> 
-        <p style="color: gray;">It seems like the poll "{{ question.question_text }}" has already expired.</p>
-        <p style="color: gray;">Since, {{ question.end_date }}</p>
-        <a href="{% url 'polls:results' question.id %}"><p>Want to see the result?</p></a>
-    </article>
+<article>
+    <h1 style="font-size: 300%;">Great Scott!</h1> 
+    <p style="color: gray;">Why are you here? The poll is not published yet.</p>
+</article>
 {% endif %}
