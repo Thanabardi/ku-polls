@@ -1,6 +1,6 @@
 # ku-polls
-[![Build Status](https://travis-ci.com/Thanabardi/ku-polls.svg?branch=master)](https://travis-ci.com/Thanabardi/demo-pyci)    
-[![codecov](https://codecov.io/gh/Thanabardi/ku-polls/branch/master/graph/badge.svg?token=2DW7GC6C86)](https://codecov.io/gh/Thanabardi/demo-pyci)
+[![Build Status](https://app.travis-ci.com/Thanabardi/ku-polls.svg?branch=main)](https://app.travis-ci.com/Thanabardi/ku-polls)  
+[![codecov](https://codecov.io/gh/Thanabardi/ku-polls/branch/main/graph/badge.svg?token=50Z0MD6OX5)](https://codecov.io/gh/Thanabardi/ku-polls)
 
 The **KU-Polls** is an online polling tool that has a simple procedure for creating polls, and allows everyone to see the results of a poll or survey.    
 
