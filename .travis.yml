@@ -13,8 +13,8 @@ install:
     
 # script to run tests. Script can have many commands, one per line.
 script: 
-  - python manage.py test polls
-  - coverage manage.py test polls
+  - python ./manage.py test polls
+  - coverage run ./manage.py test polls
 
 # Add a section to send the result to Codecov
 after_script:
