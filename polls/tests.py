@@ -118,7 +118,7 @@ class QuestionTests(TestCase):
         self.assertTrue(question.was_published_recently())
         # current time is 1 minure after publication date
 
-        time = timezone.now() + datetime.timedelta(days=-1)
+        time = timezone.now() + datetime.timedelta(hours=-23)
         question = Question(question_text="the day before pub date.", pub_date=time)
         self.assertTrue(question.was_published_recently())
         # current date is 1 day after publication date
