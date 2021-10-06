@@ -1,1 +1,5 @@
-coverage
+Coverage
+Django
+django-environ
+python-decouple
+pylint-django
