@@ -1,0 +1,36 @@
+{% load static %}
+
+<link rel="stylesheet" type="text/css" href="{% static 'polls/index_style.css' %}">
+
+<form style="position: absolute; top: 30%; left: 50%; transform: translate(-50%, -50%); width: 50%;" method="POST">
+<h1 style= "color: rgb(0, 102, 100); font-size: 500%; text-align: center;">KU Polls</h1>    
+    <table>
+        {% csrf_token %}
+        <tr>
+            <th colspan="2" style= "font-size: 140%">Login</th>
+        </tr>
+        {% for field in form %}
+            <tr>
+                <td style="text-align: right;">{{ field.label_tag }}</td>
+                <td>{{ field }}</td>
+            </tr>
+            {% for error in field.errors %}
+                <tr>
+                    <td style="color: red; font-size: 80%; line-height: 1em;" colspan="2">{{ error }}</td>
+                </tr>
+            {% endfor %}
+        {% endfor %}
+    <tr>
+        <td colspan="2">
+            <button type="submit" style = "font-size: 80%; margin: 2%; 
+            padding: 10px; width: 40%; border: none; background-color: rgb(178, 187, 30)">Continue</button>
+        </td>
+    </tr>
+    <tr>
+        <td colspan="2" style="font-size: 70%; line-height: 1.5em;">
+            <p><a href="{% url 'password_reset' %}">Forgot password?</a></p>
+            New to Ku Polls? <a href="{% url 'signup' %}">Sign Up</a>
+        </td>
+    </tr>
+</table>
+</form>

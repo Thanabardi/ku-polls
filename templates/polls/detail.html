@@ -3,13 +3,25 @@
 <link rel="stylesheet" type="text/css" href="{% static 'polls/style.css' %}">
 
 <header>
-    <h1>KU Polls</h1>
-    <a href="/polls/" style = "font-size: 80%;">Home</a>
+    <div style="display: flex; justify-content: space-between;">
+        <h1>KU Polls</h1>
+        {% if user.is_authenticated %}
+            {{ user.username }}
+        {% endif %}
+    </div>
+    <div style="font-size: 80%; display: flex; justify-content: space-between;">
+        <a href="/polls/">Home</a>
+        {% if user.is_authenticated %}
+            <a href="{% url 'logout' %}">Logout</a>
+        {% else %}
+            <a href="{% url 'login' %}">Login</a>
+        {% endif %}
+    </div>
 </header>
 
 {% if question.is_published %}
     {% if question.can_vote %}
-        <h2 style="font-family: Helvetica, sans-serif; font-size: 200%; margin: 1em;">{{ question.question_text }}</h2>
+        <h2 style="font-size: 200%; margin: 1em;">{{ question.question_text }}</h2>
 
         <form action="{% url 'polls:vote' question.id %}" method="post">
             
@@ -21,11 +33,11 @@
             </ul>
         {% endfor %}
 
-        <input type="submit" value="Vote" style = "font-family: Helvetica, sans-serif;
-            font-size: 120%; margin: 2%; padding: 10px; width: 5%; border: none; background-color: rgb(178, 187, 30)">
+        <input type="submit" value="Vote" style = "font-size: 120%; margin: 2%; 
+        padding: 10px; width: 5%; border: none; background-color: rgb(178, 187, 30)">
 
         {% if error_message %}
-            <p style="font-family: Helvetica, sans-serif; color: red; font-size: 120%; margin: 2%"><strong>{{ error_message }}</strong></p>
+            <p style="color: red; font-size: 120%; margin: 2%"><strong>{{ error_message }}</strong></p>
         {% endif %}
 
         </form>

@@ -1,0 +1,8 @@
+{% load static %}
+
+<link rel="stylesheet" type="text/css" href="{% static 'polls/index_style.css' %}">
+
+<div style="position: absolute; top: 20%; left: 50%; transform: translate(-50%, -50%); text-align: center;">
+    <h1 style= "font-size: 300%; color: rgb(0, 102, 100);">We're sad to see you go</h1>
+    <p style= "font-size: 120%">Want to vote again? <a href="{% url 'login'%}"> Login</a></p>
+</div>

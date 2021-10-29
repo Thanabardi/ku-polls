@@ -1,17 +1,21 @@
+* {
+    font-family: Helvetica, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-decoration: none;
+}
 body {
     background: whitesmoke url("images/background.gif");
     background-repeat: no-repeat;
     background-size: cover;
 }
 header {
-    font-family: Helvetica, sans-serif;
     text-align: center;
     line-height: 1em;
     padding: 2%;
 }
 table {
     background: rgba(240, 240, 240, 0.9);
-    font-family: Helvetica, sans-serif;
     list-style-type: circle;
     text-align: center;
     font-size: 150%;
@@ -26,4 +30,7 @@ a:link, a:visited  {
 a:hover {
     color: rgb(178, 187, 30);
     text-decoration: none;    
+}
+button:hover {
+    color: white;  
 }
