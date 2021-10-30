@@ -4,22 +4,22 @@
 
 <form style="position: absolute; top: 30%; left: 50%; transform: translate(-50%, -50%); width: 50%;" method="POST">
 <h1 style= "color: rgb(0, 102, 100); font-size: 500%; text-align: center;">KU Polls</h1>    
-    <table>
-        {% csrf_token %}
+<table style="width: 40%;">
+    {% csrf_token %}
+    <tr>
+        <th colspan="2" style= "font-size: 140%">Login</th>
+    </tr>
+    {% for field in form %}
         <tr>
-            <th colspan="2" style= "font-size: 140%">Login</th>
+            <td style="text-align: right;">{{ field.label_tag }}</td>
+            <td>{{ field }}</td>
         </tr>
-        {% for field in form %}
-            <tr>
-                <td style="text-align: right;">{{ field.label_tag }}</td>
-                <td>{{ field }}</td>
-            </tr>
-            {% for error in field.errors %}
-                <tr>
-                    <td style="color: red; font-size: 80%; line-height: 1em;" colspan="2">{{ error }}</td>
-                </tr>
-            {% endfor %}
-        {% endfor %}
+    {% endfor %}
+    {% for error in form.non_field_errors %}
+        <tr>
+            <td style="color: red; font-size: 80%; line-height: 1em; max-width: 300px;" colspan="2">{{ error }}</td>
+        </tr>
+    {% endfor %}    
     <tr>
         <td colspan="2">
             <button type="submit" style = "font-size: 80%; margin: 2%; 

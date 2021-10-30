@@ -4,8 +4,13 @@
 
 <header>
     <h1 style = "color: rgb(0, 102, 100); font-size: 500%;">KU Polls</h1>
-    <!-- <p h1 style = "color: rgb(116, 120, 120); font-size: 130%;">Welcome to the KU Polls, plese click on each topic to vote.</p> -->
-    {{ ip }}
+
+    {% if user.is_authenticated %}
+        <p h1 style = "color: rgb(116, 120, 120); font-size: 140%;">Hello, {{ user.username }}</p>
+        <a style = "font-size: 120%;" href="{% url 'logout' %}">Logout</a>
+    {% else %}
+        <a style = "font-size: 120%;" href="{% url 'login' %}">Login</a>
+    {% endif %}
 </header>
 
 {% if question_list %}
