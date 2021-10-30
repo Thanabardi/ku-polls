@@ -16,7 +16,7 @@
             </tr>
             {% for error in field.errors %}
                 <tr>
-                    <td style="color: red; font-size: 80%; line-height: 1em;" colspan="2">{{ error }}</td>
+                    <td style="color: red; font-size: 80%; line-height: 1em; max-width: 400px;" colspan="2">{{ error }}</td>
                 </tr>
             {% endfor %}
         {% endfor %}
