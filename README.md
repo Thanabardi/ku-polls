@@ -13,3 +13,12 @@ Iterations
 - [Iteration 1 Plan](../../wiki/Iteration-1-Plan)   
 - [Iteration 2 Plan](../../wiki/Iteration-2-Plan)   
 - [Iteration 3 Plan](../../wiki/Iteration-3-Plan)  
+
+## Running KU Polls
+
+Users provided by the initial data (users.json):
+
+| Username  | Password    |
+|-----------|-------------|
+| user1     | 123456u1    |
+| user2     | 123456u2    |

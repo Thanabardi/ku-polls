@@ -1,0 +1,60 @@
+[
+{
+  "model": "polls.question",
+  "pk": 4,
+  "fields": {
+    "question_text": "What kind of person are you, night person or morning person?",
+    "pub_date": "2021-09-15T12:12:14Z",
+    "end_date": "2021-12-31T12:12:16Z"
+  }
+},
+{
+  "model": "polls.question",
+  "pk": 5,
+  "fields": {
+    "question_text": "What kind of person are you, extrovert or introvert?",
+    "pub_date": "2021-09-14T12:12:04Z",
+    "end_date": "2021-11-01T12:12:05Z"
+  }
+},
+{
+  "model": "polls.choice",
+  "pk": 3,
+  "fields": {
+    "question": 4,
+    "choice_text": "Night owl"
+  }
+},
+{
+  "model": "polls.choice",
+  "pk": 4,
+  "fields": {
+    "question": 4,
+    "choice_text": "Early bird"
+  }
+},
+{
+  "model": "polls.choice",
+  "pk": 5,
+  "fields": {
+    "question": 5,
+    "choice_text": "extrovert"
+  }
+},
+{
+  "model": "polls.choice",
+  "pk": 6,
+  "fields": {
+    "question": 5,
+    "choice_text": "introvert"
+  }
+},
+{
+  "model": "polls.votes",
+  "pk": 1,
+  "fields": {
+    "user": 2,
+    "choice": 5
+  }
+}
+]
